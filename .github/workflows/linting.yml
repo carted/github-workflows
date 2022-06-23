@@ -8,7 +8,7 @@ env:
 on:
   workflow_call:
     secrets:
-      TOKEN:
+      token:
         required: true
 jobs:
   golangci:
@@ -23,7 +23,7 @@ jobs:
         with:
           repository: carted/github-workflows
           path: './.workdir/github-workflows/'
-          token: ${{ env.TOKEN }}
+          token: ${{ secrets.token }}
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3.2.0
         with:
