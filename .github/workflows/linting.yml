@@ -7,6 +7,9 @@ env:
 
 on:
   workflow_call:
+    secrets:
+      GITHUB_TOKEN:
+        required: true
 jobs:
   golangci:
     runs-on: [self-hosted, linux]
