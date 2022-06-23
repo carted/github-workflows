@@ -5,12 +5,6 @@ env:
   GITHUB_TOKEN: ${{ secrets.CARTEDBOT_GITHUB_TOKEN }}
   GOPRIVATE: "github.com/carted"
 
-#on:
-#  push:
-#    branches: [ '*', '!main' ]
-#  pull_request:
-#    branches: [ 'main' ]
-#
 on:
   workflow_call:
 jobs:
@@ -21,24 +15,16 @@ jobs:
         with:
           go-version: 1.18
       - uses: actions/checkout@v3
+      - name: Get github-workflows
+        uses: actions/checkout@v3
+        with:
+          repository: carted/github-workflows
+          path: './.workdir/github-workflows/'
+          token: ${{ env.GITHUB_TOKEN }}
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3.2.0
         with:
           version: latest
-          args: "--out-${NO_FUTURE}format colored-line-number"
-
-          # Optional: golangci-lint command line arguments.
-          #          args: --out-format=github-actions
-
-          # Optional: show only new issues if it's a pull request. The default value is `false`.
+          args: "--out-${NO_FUTURE}format colored-line-number --config ./.workdir/github-workflows/linting/.golangci.yml"
           only-new-issues: true
-
-          # Optional: if set to true then the all caching functionality will be complete disabled,
-          #           takes precedence over all other caching options.
           skip-cache: true
-
-          # Optional: if set to true then the action don't cache or restore ~/go/pkg.
-          # skip-pkg-cache: true
-
-          # Optional: if set to true then the action don't cache or restore ~/.cache/go-build.
-          # skip-build-cache: true
