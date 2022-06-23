@@ -24,7 +24,7 @@ jobs:
           repository: carted/github-workflows
           path: './.workdir/github-workflows/'
           token: ${{ secrets.token }}
-          ref: main
+          ref: linting
       - name: run
         run: |
           cd .workdir && ls 
