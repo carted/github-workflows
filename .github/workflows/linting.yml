@@ -24,6 +24,11 @@ jobs:
           repository: carted/github-workflows
           path: './.workdir/github-workflows/'
           token: ${{ secrets.token }}
+      - name: run
+        run: |
+          cd .workdir && ls 
+          cd github-workflows && ls
+          cd linting && ls
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3.2.0
         with:
