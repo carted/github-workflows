@@ -4,7 +4,6 @@ env:
   GITHUB_USERNAME: "cartedbot"
   GITHUB_TOKEN: ${{ secrets.CARTEDBOT_GITHUB_TOKEN }}
   GOPRIVATE: "github.com/carted"
-
 on:
   workflow_call:
     secrets:
@@ -17,19 +16,17 @@ jobs:
       - uses: actions/setup-go@v3
         with:
           go-version: 1.18
-      - uses: actions/checkout@v3
-      - name: Get github-workflows
+
+      - name: Get source
+        uses: actions/checkout@v3
+
+      - name: Get github-workflows repo
         uses: actions/checkout@v3
         with:
           repository: carted/github-workflows
           path: './.workdir/github-workflows/'
           token: ${{ secrets.token }}
-          ref: linting
-      - name: run
-        run: |
-          cd .workdir && ls 
-          cd github-workflows && ls
-          cd linting && ls
+
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3.2.0
         with:
