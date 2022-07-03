@@ -25,6 +25,7 @@ linters-settings:
       # - io.Copy(*bytes.Buffer)
       # - io.Copy(os.Stdout)
       - (io.Closer).Close
+      - (*os.File).Close
   gci:
     # Checks that no inline Comments are present.
     # Default: false
