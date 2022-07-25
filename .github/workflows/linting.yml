@@ -1,10 +1,5 @@
 name: Linting
 
-#env:
-#  GITHUB_USERNAME: "cartedbot"
-#  GITHUB_TOKEN: ${{ secrets.CARTEDBOT_GITHUB_TOKEN }}
-#  GOPRIVATE: "github.com/carted"
-
 on:
   workflow_call:
     secrets:
