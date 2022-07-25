@@ -1,0 +1,51 @@
+name: Go
+
+#env:
+#  GITHUB_USERNAME: "cartedbot"
+#  GITHUB_TOKEN: ${{ secrets.CARTEDBOT_GITHUB_TOKEN }}
+#  GOPRIVATE: "github.com/carted"
+
+on:
+  workflow_call:
+    secrets:
+      token:
+        required: true
+    inputs:
+      go_version:
+        description: "The Go version to use for the build."
+        required: false
+        type: string
+        default: 1.18
+      github_username:
+        description: "The GitHub username to use for the build."
+        required: false
+        type: string
+        default: "cartedbot"
+jobs:
+  build:
+    runs-on: [self-hosted, linux]
+    steps:
+      - name: Git
+        uses: actions/checkout@v3
+
+      - name: Go modules cache
+        uses: actions/cache@v3
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      - name: GO
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ inputs.go_version }}
+
+      - name: Private GitHub repos
+        run: git config --global url."https://${{ inputs.github_username }}:${{ secrets.token }}@github.com/carted".insteadOf "https://github.com/carted"
+
+      - name: Tests
+        run: go test -v ./...
+
+      - name: Test the build
+        run: go build -v ./...
