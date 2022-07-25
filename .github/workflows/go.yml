@@ -5,7 +5,6 @@ on:
     secrets:
       token:
         description: "The GitHub token to use for the workflow."
-        type: string
         required: true
     inputs:
       go-version:
