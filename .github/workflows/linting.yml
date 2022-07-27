@@ -17,8 +17,13 @@ on:
         default: 1.18
 jobs:
   golangci:
-    runs-on: [self-hosted, linux]
+    runs-on: [ self-hosted, linux ]
     steps:
+      - name: Cleanup
+        run: |
+          cd ~
+          rm -rf .gitconfig
+
       - uses: actions/setup-go@v3
         with:
           go-version: ${{ inputs.go-version }}
@@ -36,7 +41,7 @@ jobs:
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3.2.0
         with:
-          version: latest
+          version: v1.46.2
           args: "--out-${NO_FUTURE}format colored-line-number --config ./.workdir/github-workflows/linting/.golangci.yml"
           only-new-issues: true
           skip-cache: true
