@@ -1,5 +1,8 @@
 name: Linting
 
+env:
+  GOPRIVATE: "github.com/carted"
+
 on:
   workflow_call:
     secrets:
@@ -22,7 +25,7 @@ jobs:
       - name: Get source
         uses: actions/checkout@v3
 
-      - name: Get github-workflows repo
+      - name: Get github-workflows repository
         uses: actions/checkout@v3
         with:
           repository: carted/github-workflows
