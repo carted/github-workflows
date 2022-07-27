@@ -25,7 +25,10 @@ linters-settings:
       # - io.Copy(*bytes.Buffer)
       # - io.Copy(os.Stdout)
       - (io.Closer).Close
+      - (*io.Closer).Close
+      - (os.File).Close
       - (*os.File).Close
+      - (*google.golang.org/grpc.ClientConn).Close
   gci:
     # Checks that no inline Comments are present.
     # Default: false
