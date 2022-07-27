@@ -22,7 +22,7 @@ on:
         default: "cartedbot"
 jobs:
   build:
-    runs-on: [self-hosted, linux]
+    runs-on: [ self-hosted, linux ]
     steps:
       - name: Cleanup
         run: |
