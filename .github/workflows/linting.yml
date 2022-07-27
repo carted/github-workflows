@@ -1,9 +1,13 @@
 name: Linting
 
+env:
+  GOPRIVATE: "github.com/carted"
+
 on:
   workflow_call:
     secrets:
       token:
+        description: "The GitHub token to use for the workflow."
         required: true
     inputs:
       go-version:
@@ -22,7 +26,7 @@ jobs:
       - name: Get source
         uses: actions/checkout@v3
 
-      - name: Get github-workflows repo
+      - name: Get github-workflows repository
         uses: actions/checkout@v3
         with:
           repository: carted/github-workflows
