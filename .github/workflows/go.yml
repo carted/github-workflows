@@ -27,7 +27,6 @@ jobs:
       - name: Cleanup
         run: |
           cd ~
-          cat .gitconfig
           rm -rf .gitconfig
 
       - name: Git

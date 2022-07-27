@@ -22,7 +22,6 @@ jobs:
       - name: Cleanup
         run: |
           cd ~
-          cat .gitconfig
           rm -rf .gitconfig
 
       - uses: actions/setup-go@v3
