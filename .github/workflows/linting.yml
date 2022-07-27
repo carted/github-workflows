@@ -19,6 +19,12 @@ jobs:
   golangci:
     runs-on: [self-hosted, linux]
     steps:
+       - name: Cleanup
+         run: |
+           cd ~
+           cat .gitconfig
+           rm -rf .gitconfig
+
       - uses: actions/setup-go@v3
         with:
           go-version: ${{ inputs.go-version }}

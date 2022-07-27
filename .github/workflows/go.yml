@@ -24,6 +24,12 @@ jobs:
   build:
     runs-on: [self-hosted, linux]
     steps:
+      - name: Cleanup
+        run: |
+          cd ~
+          cat .gitconfig
+          rm -rf .gitconfig
+
       - name: Git
         uses: actions/checkout@v3
 
