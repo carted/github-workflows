@@ -4,6 +4,7 @@ run:
 #  don't run for tests
   tests: false
   format: colored-line-number
+  modules-download-mode: readonly
 linters-settings:
   errcheck:
     # Report about not checking of errors in type assertions: `a := b.(MyStruct)`.
