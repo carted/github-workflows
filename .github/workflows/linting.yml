@@ -45,3 +45,5 @@ jobs:
           args: "--out-${NO_FUTURE}format colored-line-number --config ./.workdir/github-workflows/linting/.golangci.yml --verbose"
           only-new-issues: true
           skip-cache: true
+          skip-pkg-cache: true
+          skip-build-cache: true
