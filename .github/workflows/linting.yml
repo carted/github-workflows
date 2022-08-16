@@ -38,6 +38,10 @@ jobs:
           path: './.workdir/github-workflows/'
           token: ${{ secrets.token }}
 
+      - name: Fix deps
+        run: |
+          go mod tidy
+
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3.2.0
         with:
