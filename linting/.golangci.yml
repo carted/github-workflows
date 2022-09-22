@@ -66,7 +66,7 @@ linters-settings:
   lll:
     # max line length, lines longer will be reported. Default is 120.
     # '\t' is counted as 1 character by default, and can be changed with the tab-width option
-    line-length: 200
+    line-length: 800
   unused:
     # treat code as a program (not a library) and report unused exported identifiers
     check-exported: false
